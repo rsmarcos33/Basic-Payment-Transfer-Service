@@ -1,0 +1,554 @@
+{
+	"info": {
+		"_postman_id": "e5288740-4158-4ec9-869e-0ae243c64b28",
+		"name": "Payment Transfer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20793688"
+	},
+	"item": [
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "Create Account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"balance\": 1000.0\n}"
+						},
+						"url": {
+							"raw": "http://{{payment_url}}/accounts",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Account by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{payment_url}}/accounts/2",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"accounts",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Get Transactions by Account ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{payment_url}}/transactions/account/1",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"transactions",
+								"account",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transactions Between Dates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{payment_url}}/transactions?start=2024-01-01&end=2025-12-31",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "start",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "end",
+									"value": "2025-12-31"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transfers",
+			"item": [
+				{
+					"name": "Make Transfer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sourceId\": 1,\n  \"destinationId\": 2,\n  \"amount\": 250.0,\n  \"description\": \"Test transfer\"\n}"
+						},
+						"url": {
+							"raw": "http://{{payment_url}}/transfers",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"transfers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Presentation",
+			"item": [
+				{
+					"name": "Create Account 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"balance\": 1000.0\n}"
+						},
+						"url": {
+							"raw": "http://{{payment_url}}/accounts",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exception-trying to get non existing account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{payment_url}}/accounts/5555",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"accounts",
+								"5555"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Account 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{payment_url}}/accounts/1",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"accounts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Account 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"balance\": 1000.0\n}"
+						},
+						"url": {
+							"raw": "http://{{payment_url}}/accounts",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Account 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{payment_url}}/accounts/2",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"accounts",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Failed transfer - Insufficient funds",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sourceId\": 1,\n  \"destinationId\": 2,\n  \"amount\": 2500.0,\n  \"description\": \"Test transfer\"\n}"
+						},
+						"url": {
+							"raw": "http://{{payment_url}}/transfers",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"transfers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Failed transfer - Trying to send fewer money than min",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sourceId\": 1,\n  \"destinationId\": 2,\n  \"amount\": 19.0,\n  \"description\": \"Test transfer\"\n}"
+						},
+						"url": {
+							"raw": "http://{{payment_url}}/transfers",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"transfers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transfer funds from 1st to null acc",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sourceId\": 1,\n  \"destinationId\": null,\n  \"amount\": 250.0,\n  \"description\": \"Test transfer\"\n}"
+						},
+						"url": {
+							"raw": "http://{{payment_url}}/transfers",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"transfers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transfer funds from 1st to 2nd acc",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sourceId\": 1,\n  \"destinationId\": 2,\n  \"amount\": 250.0,\n  \"description\": \"Test transfer\"\n}"
+						},
+						"url": {
+							"raw": "http://{{payment_url}}/transfers",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"transfers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Account 1(balance=750)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{payment_url}}/accounts/1",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"accounts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Account 2(balance=1250)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{payment_url}}/accounts/2",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"accounts",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transactions by Account ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{payment_url}}/transactions/account/1",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"transactions",
+								"account",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exception-End date before start",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{payment_url}}/transactions?accountId=2&start=2025-12-31&end=2024-01-01",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "2"
+								},
+								{
+									"key": "start",
+									"value": "2025-12-31"
+								},
+								{
+									"key": "end",
+									"value": "2024-01-01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transactions Between Dates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{payment_url}}/transactions?accountId=2&start=2024-01-01&end=2025-12-31",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "2"
+								},
+								{
+									"key": "start",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "end",
+									"value": "2025-12-31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Account 3",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"balance\": 1000.0\n}"
+						},
+						"url": {
+							"raw": "http://{{payment_url}}/accounts",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Account 3",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 3,\n  \"balance\": 1000.0\n}"
+						},
+						"url": {
+							"raw": "http://{{payment_url}}/accounts/3",
+							"protocol": "http",
+							"host": [
+								"{{payment_url}}"
+							],
+							"path": [
+								"accounts",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "payment_url",
+			"value": "localhost:8080",
+			"type": "default"
+		}
+	]
+}

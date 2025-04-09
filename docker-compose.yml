@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+
+  postgresql:
+    image: postgres
+    container_name: demo-postgres
+    hostname: demo-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: root
+    volumes:
+      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+    networks:
+      - genesis_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  paymenttransfer:
+    container_name: paymenttransfer
+    image: paymenttransfer
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/paymenttransfer
+    depends_on:
+      - "postgresql"
+    networks:
+      - genesis_network
+volumes:
+  postgres-data:
+
+networks:
+  genesis_network:
